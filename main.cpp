@@ -65,18 +65,30 @@ int main(){
     }
 
     //Change init file for Bilibili Server.
-    if(sv_option==2){
+    else if(sv_option==2){
        init_array[1] = biliconf[0];
        init_array[2] = biliconf[1];
     }
 
     //Edit gamePathFile.
-    if(sv_option==0){
+    else if(sv_option==0){
         std::string new_game_path = getWD();
         std::ofstream editGamePathFile("./.game_path.txt");
-        
+        if(!editGamePathFile.is_open()){
+            std::cout << "./.game_path.txt Failed to Open for Update" << std::endl;
+            return 0;
+        }
+        editGamePathFile << new_game_path;
+        editGamePathFile.close();
+    }
+    
+    //Error catching
+    else{
+        std::cout << "Error: Unknown sv_option" << std::endl;
+        return 0;
     }
 
+    //Updates Init File
     std::ofstream newInitFile(init_path);
     if(!newInitFile.is_open()){
         std::cout << "Error: Init File is Failed to open for Update" << std::endl;
@@ -86,5 +98,14 @@ int main(){
         newInitFile << init_array[i] <<std::endl;
     }
     newInitFile.close();
+    
+    if(sv_option==1){
+        std::cout << "You are now in Mihoyo Server." << std::endl;
+    }else if(sv_option==2){
+        std::cout << "You are now in Bilibili Server." << std::endl;
+    }else if(sv_option==0){
+        std::cout << "Your Game Path has been Updated." << std::endl;
+    }
 
+    return 0;
 }
