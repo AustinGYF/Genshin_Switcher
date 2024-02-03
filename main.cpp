@@ -37,7 +37,8 @@ int main(){
     std::string init_path = game_dir + "config.ini";
     
     int sv_option;
-    std::cout << "Server Options: \n 1. Mihoyo Server\n 2. Bilibili Server\n";
+    std::cout << "Server Options: \n";
+    std::cout << "1. Mihoyo Server\n 2. Bilibili Server\n 0. Edit Game Path\n";
     std::cout << "Select Server: ";
     std::cin >> sv_option;    
 
@@ -67,6 +68,13 @@ int main(){
     if(sv_option==2){
        init_array[1] = biliconf[0];
        init_array[2] = biliconf[1];
+    }
+
+    //Edit gamePathFile.
+    if(sv_option==0){
+        std::string new_game_path = getWD();
+        std::ofstream editGamePathFile("./.game_path.txt");
+        
     }
 
     std::ofstream newInitFile(init_path);
