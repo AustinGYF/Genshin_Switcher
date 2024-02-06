@@ -15,7 +15,9 @@ std::string getWD(){
 }
 
 int copySDK(std::string game_dir){
-    
+    int sdk_error_flag;
+    std::string sdk_path = game_dir + "YuanShen_Data/Plugins/PCGameSDK.dll"
+    fs::copy("./PCGameSDK.dll",sdk_path);    
 }
 
 int main(){
