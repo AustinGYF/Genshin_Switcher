@@ -2,6 +2,9 @@
 #include <fstream>
 #include <string>
 #include "./config.h"
+#include <filesystem>
+
+namespace fs=std::filesystem;
 
 std::string getWD(){
     std::string game_dir;
@@ -9,6 +12,10 @@ std::string getWD(){
     std::cin >> game_dir;
 
     return game_dir;
+}
+
+int copySDK(std::string game_dir){
+    
 }
 
 int main(){
